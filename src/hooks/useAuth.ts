@@ -20,17 +20,17 @@ export const useAuth = () => {
             showMessage({ title: "Login is Successful", status: "success" });
             history.push("/home");
           } else {
-            alert("Not Found User");
+            showMessage({ title: "Not Found User", status: "error" });
           }
         })
         .catch(() => {
-          alert("Login Failed");
+          showMessage({ title: "Login is Failed", status: "error" });
         })
         .finally(() => {
           setLoading(false);
         });
     },
-    [history]
+    [history, showMessage]
   );
 
   return { login, loading };
