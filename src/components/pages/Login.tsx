@@ -37,7 +37,13 @@ export const Login: VFC = memo(() => {
             value={userId}
             onChange={onChangeUserId}
           />
-          <PrimaryButton onClick={onClickLogin}>Login</PrimaryButton>
+          <PrimaryButton
+            onClick={onClickLogin}
+            loading={loading}
+            disabled={userId === ""}
+          >
+            Login
+          </PrimaryButton>
         </Stack>
       </Box>
     </Flex>
