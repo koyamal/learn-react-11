@@ -10,12 +10,18 @@ import {
 import { ChangeEvent, memo, useState, VFC } from "react";
 
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Login: VFC = memo(() => {
+  const { login, loading } = useAuth();
   const [userId, setUserId] = useState("");
 
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
+  };
+
+  const onClickLogin = () => {
+    login(userId);
   };
 
   return (
@@ -31,7 +37,7 @@ export const Login: VFC = memo(() => {
             value={userId}
             onChange={onChangeUserId}
           />
-          <PrimaryButton>Login</PrimaryButton>
+          <PrimaryButton onClick={onClickLogin}>Login</PrimaryButton>
         </Stack>
       </Box>
     </Flex>
