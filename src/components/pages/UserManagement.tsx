@@ -2,17 +2,7 @@
 
 import {
   Center,
-  FormControl,
-  FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
   Spinner,
-  Stack,
   useDisclosure,
   Wrap,
   WrapItem
@@ -21,6 +11,7 @@ import { memo, useCallback, useEffect, VFC } from "react";
 
 import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "../../hooks/useAllUsers";
+import { UserDetailModal } from "../organisms/user/UserDetailModal";
 
 export const UserManagement: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -56,39 +47,7 @@ export const UserManagement: VFC = memo(() => {
           })}
         </Wrap>
       )}
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        autoFocus={false}
-        motionPreset="slideInBottom"
-      >
-        <ModalOverlay>
-          <ModalContent pb={6}>
-            <ModalHeader>User Info</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody mx={4}>
-              <Stack spacing={4}>
-                <FormControl>
-                  <FormLabel>Name</FormLabel>
-                  <Input value="Tom" isReadOnly />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Full Name</FormLabel>
-                  <Input value="Tomyuki Takahashi" isReadOnly />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>MAIL</FormLabel>
-                  <Input value="Tom@tom" isReadOnly />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>TEL</FormLabel>
-                  <Input value="012-345-6789" isReadOnly />
-                </FormControl>
-              </Stack>
-            </ModalBody>
-          </ModalContent>
-        </ModalOverlay>
-      </Modal>
+      <UserDetailModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 });
