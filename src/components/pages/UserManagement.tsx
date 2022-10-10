@@ -11,17 +11,25 @@ import { memo, useCallback, useEffect, VFC } from "react";
 
 import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "../../hooks/useAllUsers";
+import { useSelectUser } from "../../hooks/useSelectUser";
 import { UserDetailModal } from "../organisms/user/UserDetailModal";
+import { User } from "../../types/api/user";
 
 export const UserManagement: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { getUsers, loading, users } = useAllUsers();
+  const { onSelectUser, selectedUser } = useSelectUser();
+  console.log("selectedUser---");
+  console.log(selectedUser);
+  console.log("---selectedUser");
 
   useEffect(() => {
     getUsers();
   }, []);
 
-  const onClickUser = useCallback(() => {
+  const onClickUser = useCallback((id: number, users: Array<User>) => {
+    //console.log(users);
+    onSelectUser({ id, users });
     onOpen();
   }, []);
 
@@ -37,6 +45,8 @@ export const UserManagement: VFC = memo(() => {
             return (
               <WrapItem key={user.id} mx="auto">
                 <UserCard
+                  id={user.id}
+                  users={users}
                   imageUrl="https://source.unsplash.com/random"
                   userName={user.username}
                   fullName={user.name}
