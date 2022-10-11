@@ -13,7 +13,6 @@ import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { useSelectUser } from "../../hooks/useSelectUser";
 import { UserDetailModal } from "../organisms/user/UserDetailModal";
-import { User } from "../../types/api/user";
 
 export const UserManagement: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,11 +26,13 @@ export const UserManagement: VFC = memo(() => {
     getUsers();
   }, []);
 
-  const onClickUser = useCallback((id: number, users: Array<User>) => {
-    //console.log(users);
-    onSelectUser({ id, users });
-    onOpen();
-  }, []);
+  const onClickUser = useCallback(
+    (id: number) => {
+      onSelectUser({ id, users });
+      onOpen();
+    },
+    [users]
+  );
 
   return (
     <>
@@ -46,7 +47,6 @@ export const UserManagement: VFC = memo(() => {
               <WrapItem key={user.id} mx="auto">
                 <UserCard
                   id={user.id}
-                  users={users}
                   imageUrl="https://source.unsplash.com/random"
                   userName={user.username}
                   fullName={user.name}
