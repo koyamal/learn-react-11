@@ -30,7 +30,7 @@ export const UserManagement: VFC = memo(() => {
     (id: number) => {
       onSelectUser({ id, users, onOpen });
     },
-    [users]
+    [users, onSelectUser, onOpen]
   );
 
   return (
