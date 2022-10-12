@@ -24,12 +24,11 @@ export const useAuth = () => {
             history.push("/home");
           } else {
             showMessage({ title: "Not Found User", status: "error" });
+            setLoading(false);
           }
         })
         .catch(() => {
           showMessage({ title: "Login is Failed", status: "error" });
-        })
-        .finally(() => {
           setLoading(false);
         });
     },
