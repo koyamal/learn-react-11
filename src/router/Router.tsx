@@ -34,10 +34,10 @@ export const Router: VFC = memo(() => {
             );
           }}
         />
-        <Route path="*">
-          <Page404 />
-        </Route>
       </LoginUserProvider>
+      <Route path="*">
+        <Page404 />
+      </Route>
     </Switch>
   );
 });
