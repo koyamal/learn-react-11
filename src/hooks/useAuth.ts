@@ -4,10 +4,12 @@ import { useHistory } from "react-router-dom";
 
 import { User } from "../types/api/user";
 import { useMessage } from "./useMessage";
+import { useLoginUser } from "./useLoginUser";
 
 export const useAuth = () => {
   const history = useHistory();
   const { showMessage } = useMessage();
+  const { setLoginUser } = useLoginUser();
 
   const [loading, setLoading] = useState(false);
   const login = useCallback(
@@ -17,6 +19,7 @@ export const useAuth = () => {
         .get<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
         .then((res) => {
           if (res.data) {
+            setLoginUser(res.data);
             showMessage({ title: "Login is Successful", status: "success" });
             history.push("/home");
           } else {
@@ -30,7 +33,7 @@ export const useAuth = () => {
           setLoading(false);
         });
     },
-    [history, showMessage]
+    [history, showMessage, setLoginUser]
   );
 
   return { login, loading };
