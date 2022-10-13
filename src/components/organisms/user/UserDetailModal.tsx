@@ -19,13 +19,13 @@ import { PrimaryButton } from "../../atoms/button/PrimaryButton";
 type Props = {
   user: User | null;
   isOpen: boolean;
-  isAdmin: boolean | null;
+  isAdmin?: boolean;
   onClose: () => void;
 };
 
 export const UserDetailModal: VFC<Props> = memo((props) => {
-  const { user, isOpen, isAdmin, onClose } = props;
-  const isReadOnly = isAdmin === true ? false : true;
+  const { user, isOpen, isAdmin = false, onClose } = props;
+  const isReadOnly = !isAdmin;
   const [userName, setUserName] = useState<string>(user?.username || "a");
   const [userFullName, setUserFullName] = useState<string>(user?.name || "a");
   const [userEmail, setUserEmail] = useState<string>(user?.email || "a");
