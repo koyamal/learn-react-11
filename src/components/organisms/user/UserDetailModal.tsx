@@ -26,10 +26,10 @@ type Props = {
 export const UserDetailModal: VFC<Props> = memo((props) => {
   const { user, isOpen, isAdmin = false, onClose } = props;
   const isReadOnly = !isAdmin;
-  const [userName, setUserName] = useState<string>(user?.username || "a");
-  const [userFullName, setUserFullName] = useState<string>(user?.name || "a");
-  const [userEmail, setUserEmail] = useState<string>(user?.email || "a");
-  const [userPhone, setUserPhone] = useState<string>(user?.email || "a");
+  const [userName, setUserName] = useState<string>("");
+  const [userFullName, setUserFullName] = useState<string>("");
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [userPhone, setUserPhone] = useState<string>("");
 
   useEffect(() => {
     setUserName(user?.username || "");
