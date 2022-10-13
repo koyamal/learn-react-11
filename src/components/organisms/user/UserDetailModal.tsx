@@ -13,6 +13,7 @@ import {
 import { ChangeEvent, memo, useEffect, useState, VFC } from "react";
 
 import { User } from "../../../types/api/user";
+import { PrimaryButton } from "../../atoms/button/PrimaryButton";
 
 type Props = {
   user: User | null;
@@ -89,6 +90,15 @@ export const UserDetailModal: VFC<Props> = memo((props) => {
                   onChange={(e) => onChangeUserInfo(e, setUserPhone)}
                 />
               </FormControl>
+              {isAdmin ? (
+                <>
+                  <PrimaryButton onClick={() => {}}>
+                    Edit User Info
+                  </PrimaryButton>
+                </>
+              ) : (
+                <></>
+              )}
             </Stack>
           </ModalBody>
         </ModalContent>
