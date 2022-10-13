@@ -36,8 +36,7 @@ export const UserDetailModal: VFC<Props> = memo((props) => {
     setUserFullName(user?.name || "");
     setUserEmail(user?.email || "");
     setUserPhone(user?.phone || "");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.username, user?.name, user?.email, user?.phone]);
+  }, [user]);
 
   const onChangeUserInfo = (
     e: ChangeEvent<HTMLInputElement>,
