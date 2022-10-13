@@ -6,6 +6,7 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Stack
@@ -90,11 +91,13 @@ export const UserDetailModal: VFC<Props> = memo((props) => {
                   onChange={(e) => onChangeUserInfo(e, setUserPhone)}
                 />
               </FormControl>
-              {isAdmin && (
-                <PrimaryButton onClick={() => {}}>Save</PrimaryButton>
-              )}
             </Stack>
           </ModalBody>
+          {isAdmin && (
+            <ModalFooter>
+              <PrimaryButton onClick={() => {}}>Save</PrimaryButton>
+            </ModalFooter>
+          )}
         </ModalContent>
       </ModalOverlay>
     </Modal>
