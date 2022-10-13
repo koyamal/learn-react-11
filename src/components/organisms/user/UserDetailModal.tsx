@@ -92,9 +92,7 @@ export const UserDetailModal: VFC<Props> = memo((props) => {
               </FormControl>
               {isAdmin ? (
                 <>
-                  <PrimaryButton onClick={() => {}}>
-                    Edit User Info
-                  </PrimaryButton>
+                  <PrimaryButton onClick={() => {}}>Save</PrimaryButton>
                 </>
               ) : (
                 <></>
